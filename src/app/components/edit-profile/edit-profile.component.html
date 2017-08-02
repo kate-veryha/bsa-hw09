@@ -1,0 +1,54 @@
+<p>edit here</p>
+<form
+  #editForm="ngForm"
+  (ngSubmit)="editUser(editForm)">
+    <div class="form-group">
+      <label>First name</label>
+      <input name="name"
+             required
+             [(ngModel)]="currentUser.name">
+    </div>
+    <div class="form-group">
+      <label>Last name</label>
+      <input name="surname"
+             required
+             [(ngModel)]="currentUser.surname">
+    </div>
+    <div class="form-group">
+      <label>Year of birth</label>
+      <select name="birthYear"
+              required
+              [(ngModel)]="currentUser.birthYear">
+        <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email"
+             name="email"
+             required
+             [(ngModel)]="currentUser.email"
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             #emailInput="ngModel">
+      <div *ngIf="emailInput.errors && emailInput.errors.pattern">
+        Wrong email format
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password"
+             name="password"
+             minlength="3"
+             maxlength="12"
+             required
+             [(ngModel)]="currentUser.password"
+             #passwordInput="ngModel">
+      <div *ngIf="passwordInput.errors && passwordInput.errors.minlength">
+        Password should be min 3 symbols
+      </div>
+    </div>
+
+
+    <button type="submit"
+            [disabled]="!editForm.valid">Submit</button>
+</form>
