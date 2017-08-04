@@ -23,25 +23,13 @@ export class CredentialsChildComponent implements OnInit {
   requestedUser: User;
 
   constructor(private userService: UserService, route: ActivatedRoute) {
-    console.log(this.email);
   }
 
   ngOnInit() {
-    this.userRegistered = this.userService.userRegistered(this.requestedUser);
+    console.log(this.email);
+    this.userRegistered = this.userService.emailInDB(this.email);
     this.requestedUser = this.userService.getUserByEmail(this.email);
+    console.log(this.userRegistered);
   }
 
-  /*isEmailInStorage(): boolean {
-    return (this.users
-      .map((item) => { return item.email; })
-      .indexOf(this.email) > 0);
-  }*/
-
-  /*requestedUser(): User {
-    const index = this.users
-      .map((item) => { return item.email; })
-      .indexOf(this.email);
-    return this.users[index];
-  }*/
 }
-// vasia@mail.com

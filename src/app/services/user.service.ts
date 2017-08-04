@@ -21,7 +21,6 @@ export class UserService {
 
   update(user: User) {
     const users = this.getAllUsers();
-    const a = this.userRegistered(user);
     if (this.userRegistered(user)) {
       users[this.getIndexByEmail(user.email)] = user;
       localStorage.setItem('users', JSON.stringify(users));
@@ -61,5 +60,10 @@ export class UserService {
 
   getUserByIndex(index: number): User {
     return this.getAllUsers()[index];
+  }
+
+  emailInDB(email: string) {
+    return (this.getAllUsers()
+      .findIndex(item => (item.email === email)) >= 0) ;
   }
 }

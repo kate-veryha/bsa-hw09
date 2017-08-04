@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ControlValueAccessor} from '@angular/forms';
 
 @Component ({
   selector: 'app-forgot-password',
@@ -8,7 +7,7 @@ import {ControlValueAccessor} from '@angular/forms';
   styleUrls: ['forgot-password-credentials.component.scss']
 })
 
-export class ForgotPasswordComponent implements OnInit, ControlValueAccessor {
+export class ForgotPasswordComponent implements OnInit {
   public email: string;
   captcha: string;
   dataShown: boolean;
@@ -32,12 +31,4 @@ export class ForgotPasswordComponent implements OnInit, ControlValueAccessor {
       alert('Incorrect captcha. Try again');
     }
   }
-
-  propagateChange = (_: any) => {};
-
-  registerOnChange(fn) {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched() {}
 }
