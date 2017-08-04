@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import {RegisterGuard} from './guards/register.guard';
 import {UserService} from './services/user.service';
 import {ForgotPasswordModule} from './modules/forgot-password.module';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
@@ -35,7 +34,7 @@ import {UserSearchPipe} from './pipes/user-search.pipe';
     HomeRoutingModule,
     AppRoutingModule,
   ],
-  providers: [RegisterGuard, UserService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
