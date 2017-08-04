@@ -1,6 +1,37 @@
-<p>
-  login Works!
-</p>
-<a href="" (click)="onClickRegister()" >Register</a>
-<a href="" (click)="onClickForgot()">Forgot password?</a>
+<div class="root">
+  <form name="login"
+        #form="ngForm"
+        (ngSubmit)="logIn(form)"
+  >
+    <input type="email"
+           [(ngModel)]="user.email"
+           placeholder="Email.."
+           required
+           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+           name="email"
+           #emailInput="ngModel"
+    >
+    <div *ngIf="emailInput.errors && emailInput.errors.pattern">
+      Wrong email format
+    </div>
+    <input type="password"
+           [(ngModel)]="user.password"
+           placeholder="Password"
+           required
+           minlength="3"
+           maxlength="12"
+           name="password"
+           #passwordInput="ngModel"
+    >
+    <div *ngIf="passwordInput.errors && passwordInput.errors.minlength">
+      Password should be min 3 symbols
+    </div>
+    <div *ngIf="!isLoginDataCorrect">Wrong password or email!</div>
+    <button type="submit" [disabled]="!form.valid">Log in</button>
+  </form>
+  <div>
+    <a [routerLink]="['/register']" >Register</a>
+    <a [routerLink]="['/forgot']">Forgot password?</a>
+  </div>
+</div>
 <router-outlet></router-outlet>

@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<table>
+  <tr>
+    <input placeholder="Search..."
+           ngChange="search()"
+           [(ngModel)]="queryString"
+    >
+  </tr>
+  <tr>
+    <th>First name
+      <a (click)="sortUsers('name', 'asc')">&uarr;</a>
+      <a (click)="sortUsers('name', 'desc')">&darr;</a>
+    </th>
+    <th>Last name
+      <a (click)="sortUsers('surname', 'asc')">&uarr;</a>
+      <a (click)="sortUsers('surname', 'desc')">&darr;</a>
+    </th>
+    <th>Year of birth
+      <a (click)="sortUsers('birthYear', 'asc')">&uarr;</a>
+      <a (click)="sortUsers('birthYear', 'desc')">&darr;</a>
+    </th>
+    <th>Email
+      <a (click)="sortUsers('email', 'asc')">&uarr;</a>
+      <a (click)="sortUsers('email', 'desc')">&darr;</a>
+    </th>
+  </tr>
+  <tr *ngFor="let user of (users | userSearch: queryString)">
+    <td>{{user.name}}</td>
+    <td>{{user.surname}}</td>
+    <td>{{user.birthYear}}</td>
+    <td>{{user.email}}</td>
+    <td></td>
+  </tr>
+</table>
+

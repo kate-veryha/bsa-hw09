@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
 import {User} from '../../models/user.model';
+import {NgForm} from '@angular/forms';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,26 +11,25 @@ import {User} from '../../models/user.model';
 })
 export class LoginComponent implements OnInit {
   user: User;
-
-  constructor(public router: Router, private route: ActivatedRoute) { }
-
-  ngOnInit() {
+  isLoginDataCorrect: boolean;
+  constructor(public router: Router, private userService: UserService) {
     this.user = new User();
-    console.log('on login page');
+    this.isLoginDataCorrect = true;
   }
 
-  onClickRegister() {
-    this.router.navigate(['/register']);
-    console.log('on register page');
-    return;
+  ngOnInit() {}
+
+  logIn(form: NgForm) {
+    this.user = new User(form.value);
+    if (this.userService.getIndexByEmail(this.user.email) >= 0
+      && this.user.password === this.userService.getUserByEmail(this.user.email).password
+    ) {
+      this.router.navigate(['/home']);
+      this.userService.setCurrentUser(this.user);
+    } else {
+      this.isLoginDataCorrect = false;
+    }
   }
 
-  onClickForgot() {
-    this.router.navigate(['/forgot']);
-    console.log('on forgot page');
-    return;
-  }
 
-  logIn(formData) {
-  }
 }

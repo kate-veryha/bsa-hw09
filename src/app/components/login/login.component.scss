@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.root {
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    input, button {
+      width: 300px;
+      padding: 5px;
+      margin-top: 10px;
+    }
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin: 10px;
+  }
+}

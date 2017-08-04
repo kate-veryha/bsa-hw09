@@ -3,22 +3,32 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-timer',
   template: `
-    <div>
-      <span>{{time.getHours()}}</span>:
-      <span>{{time.getMinutes()}}</span>:
-      <span>{{time.getSeconds()}}</span>
+    <div id="timer">Timer
+      <div>
+        <span>{{time.getHours()}}</span>:
+        <span>{{time.getMinutes()}}</span>:
+        <span>{{time.getSeconds()}}</span>
+      </div>
+      <input placeholder="Timer duration"
+             type="number"
+             [(ngModel)]="minutesSet"
+             [disabled]="isActive"
+             (change)="set()"
+             min="0"
+             max="1439">
+      <button type="button" (click)="start()">Start</button>
+      <button type="button" (click)="pause()">Pause</button>
+      <button type="button" (click)="reset()">Reset</button>
     </div>
-    <input placeholder="Timer duration"
-           type="number"
-           [(ngModel)]="minutesSet"
-           [disabled]="isActive"
-           (change)="set()"
-           min="0"
-           max="1439">
-    <button type="button" (click)="start()">Start</button>
-    <button type="button" (click)="pause()">Pause</button>
-    <button type="button" (click)="reset()">Reset</button>
   `,
+  styles: [`
+    #timer {
+      padding: 10px;
+    }
+    button {
+      margin: 5px;
+    }
+  `]
 })
 export class TimerComponent implements OnInit {
   isActive: boolean;

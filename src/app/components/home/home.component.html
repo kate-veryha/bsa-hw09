@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<header>
+  <h1>Home</h1>
+  <app-timer></app-timer>
+  <button type="button" (click)="logOut()">Log out</button>
+</header>
+<nav>
+  <a (click)="goToEdit()">Edit profile</a>
+  <a (click)="goToAll()">All users</a>
+</nav>
+
+<router-outlet></router-outlet>
